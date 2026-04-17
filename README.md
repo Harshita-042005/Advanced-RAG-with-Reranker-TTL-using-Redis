@@ -1,151 +1,128 @@
-🧠 Advanced RAG with Reranker & Redis TTL
+# Advanced RAG with Reranker & TTL Cache using Redis
 
-📌 Overview
+## 📌 Project Overview
 
-This project implements an Advanced Retrieval-Augmented Generation (RAG) system that improves the accuracy of AI-generated answers using:
+This project is an Advanced Retrieval-Augmented Generation (RAG) application built using Python, LangChain, Redis, FAISS, HuggingFace, and Streamlit. It retrieves relevant information from a knowledge source, reranks results using a Cross-Encoder model, and generates accurate answers using a local LLM (TinyLlama).
 
-- Semantic search
-- Neural reranking
-- Redis-based caching with TTL (Time-To-Live)
-
-The system retrieves data from Wikipedia, processes it into embeddings, ranks relevance using a Cross-Encoder, and generates responses using a local LLM.
+The system also integrates Redis Semantic Cache with TTL (Time-To-Live) to improve performance by reducing repeated LLM calls and speeding up responses.
 
 ---
 
-🚀 Features
+## 🚀 Features
 
-- 🔍 Wikipedia-based information retrieval
-- ⚡ FAISS vector database for fast semantic search
-- 🧠 Cross-Encoder reranking for better accuracy
-- 🤖 Local LLM (TinyLlama / Llama 3.2 via Ollama)
-- 💾 Redis Semantic Cache with TTL
-- 🌐 Streamlit interactive UI
-
----
-
-🏗️ Architecture Flow
-
-User Query
-   ↓
-Wikipedia Loader
-   ↓
-Text Splitting
-   ↓
-Embedding Generation
-   ↓
-FAISS Vector Search
-   ↓
-Top-K Retrieval
-   ↓
-Cross-Encoder Reranking
-   ↓
-Best Context Selection
-   ↓
-Prompt Engineering
-   ↓
-LLM (TinyLlama)
-   ↓
-Final Answer
-   ↓
-Redis Cache (TTL)
+* Semantic document retrieval using FAISS
+* Intelligent reranking using Cross-Encoder
+* Fast response with Redis Semantic Cache
+* TTL support for automatic cache expiration
+* Local LLM answer generation using TinyLlama
+* Interactive Streamlit web interface
+* Wikipedia-based dynamic knowledge source
 
 ---
 
-🛠️ Tech Stack
+## 🛠️ Tech Stack
 
-- Frontend: Streamlit
-- LLM: Ollama (Llama 3.2 / TinyLlama)
-- Embeddings: Sentence Transformers ("all-MiniLM-L6-v2")
-- Vector DB: FAISS
-- Reranker: Cross-Encoder ("ms-marco-MiniLM-L-6-v2")
-- Cache: Redis Semantic Cache
-
----
-
-📂 Project Structure
-
-├── Reranker_web.py      # Main Streamlit app
-├── requirements.txt     # Dependencies
-└── README.md            # Project documentation
+* Python
+* Streamlit
+* LangChain
+* Redis
+* FAISS
+* HuggingFace Embeddings
+* Sentence Transformers
+* TinyLlama (Ollama)
 
 ---
 
-⚙️ Installation
+## 📂 Project Structure
 
-1. Clone Repository
+```
+Advanced-RAG-Redis/
+│── Reranker_web.py
+│── requirements.txt
+│── README.md
+```
 
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+---
 
-2. Create Virtual Environment (Optional)
+## ⚙️ Installation & Setup
 
-python -m venv venv
-venv\Scripts\activate   # Windows
+### 1️⃣ Clone the Repository
 
-3. Install Dependencies
+```bash
+git clone https://github.com/yourusername/Advanced-RAG-Redis.git
+cd Advanced-RAG-Redis
+```
 
+### 2️⃣ Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-4. Install & Run Ollama
+### 3️⃣ Start Redis (Docker)
 
-Make sure Ollama is installed and running:
+```bash
+docker run -d --name redis-stack -p 6379:6379 -p 8001:8001 redis/redis-stack:latest
+```
 
-ollama run llama3.2
+### 4️⃣ Install Ollama & Pull TinyLlama
 
-5. Run Redis (Optional for Cache)
+```bash
+ollama pull tinyllama
+```
 
-redis-server
+### 5️⃣ Run the Application
 
----
-
-▶️ Usage
-
-Run the Streamlit app:
-
+```bash
 streamlit run Reranker_web.py
-
-Steps:
-
-1. Enter your query
-2. System fetches Wikipedia data
-3. FAISS retrieves relevant chunks
-4. Cross-Encoder reranks results
-5. LLM generates final answer
-6. Redis caches response (optional)
+```
 
 ---
 
-💡 Example Query
+## 💡 How It Works
 
-What is Paracetamol?
-
----
-
-📊 Key Concepts Used
-
-- Retrieval-Augmented Generation (RAG)
-- Semantic Search
-- Neural Reranking
-- Vector Databases
-- Prompt Engineering
-- Caching with TTL
+1. User enters a query
+2. FAISS retrieves top relevant document chunks
+3. Cross-Encoder reranks the retrieved results
+4. Top-ranked context is selected
+5. TinyLlama generates the final answer
+6. Redis caches responses with TTL for faster future queries
 
 ---
 
-⚠️ Notes
+## 🎯 Use Cases
 
-- Redis caching is optional (project runs without it)
-- Ensure internet connection for Wikipedia data
-- First run may take time due to model loading
-
----
-
-👩‍💻 Author
-
-B.Harshita
+* Intelligent Question Answering Systems
+* Research Assistants
+* Document-based Chatbots
+* Knowledge Retrieval Applications
 
 ---
 
-📜 License
+## 📢 Future Improvements
 
-This project is for educational purposes.
+* Add support for multiple document sources
+* Improve UI/UX design
+* Deploy as a cloud-based application
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to fork this repository and submit a pull request.
+
+---
+
+## 📄 License
+
+This project is open-source and available under the MIT License.
+
+---
+
+## 🙌 Acknowledgements
+
+* LangChain
+* HuggingFace
+* FAISS
+* Redis
+* Ollama
