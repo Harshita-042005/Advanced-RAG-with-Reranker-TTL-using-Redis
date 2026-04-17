@@ -142,7 +142,7 @@ What is Paracetamol?
 
 👩‍💻 Author
 
-N. Ramya
+B.Harshita
 
 ---
 
