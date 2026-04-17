@@ -37,7 +37,7 @@ The system also integrates Redis Semantic Cache with TTL (Time-To-Live) to impro
 
 ```
 Advanced-RAG-Redis/
-│── Reranker_web.py
+│── Reranker_web2.py
 │── requirements.txt
 │── README.md
 ```
